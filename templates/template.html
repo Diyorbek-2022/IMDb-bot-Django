@@ -1,0 +1,36 @@
+{% load static %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <small id="cinema_code_feedback" class="text-danger"></small>
+    <button type="submit">Save</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#id_cinema_code").on("input", function() {
+        let code = $(this).val();
+
+        if (code.length > 0) {
+            $.ajax({
+                url: "{% url 'check_cinema_code' %}",   // 👈 Django URL name ishlatilmoqda
+                data: {
+                    'cinema_code': code
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if (data.is_taken) {
+                        $("#cinema_code_feedback").text("❌ This cinema code is already taken!");
+                    } else {
+                        $("#cinema_code_feedback").text("✅ This cinema code is available.");
+                    }
+                }
+            });
+        } else {
+            $("#cinema_code_feedback").text("");
+        }
+    });
+});
+</script>
