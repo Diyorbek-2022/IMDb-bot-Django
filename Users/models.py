@@ -2,6 +2,8 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 
+
+
 class Info(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
@@ -16,17 +18,7 @@ class Info(models.Model):
         return f"{self.name} ({self.year})"
 
 
-class Cinema(models.Model):
-    id = models.AutoField(primary_key=True)
-    cinema_url = models.TextField()
-    info = models.OneToOneField(Info, on_delete=models.CASCADE, related_name="cinema", null=True, blank=True)
-    cinema_code = models.TextField(unique=True)
-    added_time = models.DateTimeField(auto_now_add=True)
-    next = models.IntegerField(null=True, blank=True)
-    previous = models.IntegerField(null=True, blank=True)
 
-    def __str__(self):
-        return self.info.name if self.info else "No info"
 
 
 class User(models.Model):
@@ -53,7 +45,7 @@ class User(models.Model):
 class Favorite(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="favorites")
-    cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE, related_name="favorites")
+    cinema = models.ForeignKey("Cinema.Cinema", on_delete=models.CASCADE, related_name="favorites")
     added_time = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField(null=True, validators=[MinValueValidator(1), MaxValueValidator(10)])
 
@@ -66,7 +58,7 @@ class Favorite(models.Model):
 class Showed(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="showed")
-    cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE, related_name="showed")
+    cinema = models.ForeignKey("Cinema.Cinema", on_delete=models.CASCADE, related_name="showed")
     showed_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

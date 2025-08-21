@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            fetch(`/api/v1/check-cinema-code/?cinema_code=${encodeURIComponent(code)}`)
+            fetch(`/api/v1/cinema/check-cinema-code/?cinema_code=${encodeURIComponent(code)}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.is_taken) {
