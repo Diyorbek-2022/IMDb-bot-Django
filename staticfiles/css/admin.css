@@ -18,32 +18,57 @@
     transform: translateY(0);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 
-    /* uzun matn uchun */
-    min-width: 140px;
-    min-height: 48px;
+    /* uzun matn sig‘ishi uchun */
+    min-width: 120px;
     max-width: 100%;
     white-space: normal;
     flex-wrap: wrap;
 }
 
+/* Hover effekti (lift + kattalashish) */
 .btn:hover {
     transform: translateY(-4px) scale(1.05);
 }
 
+/* Bosilganda (pastga bosilishi) */
 .btn:active {
     transform: translateY(3px) scale(0.95);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) inset;
 }
 
+/* === YALTIROQ NUR ANIMATSIYASI === */
+.btn::before {
+    content: "";
+    position: absolute;
+    top: -80%;
+    left: -80%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 0)
+    );
+    transform: rotate(25deg);
+    transition: 0.7s;
+    z-index: 1;
+}
+
+/* Hoverda nur yurishi */
+.btn:hover::before {
+    top: 100%;
+    left: 100%;
+}
+
+/* Yozuv ustida turishi uchun */
 .btn span {
     position: relative;
     z-index: 2;
-    text-align: center;
 }
 
-/* === RANGLAR + ANIMATSIYA === */
+/* === RANGLAR (har birida 3D soya + hover nur) === */
 
-/* SUCCESS */
+/* Feruz-yashil (Saqlash tugmasi) */
 .btn-success {
     background: linear-gradient(145deg, rgb(0, 255, 200), rgb(0, 180, 150));
     box-shadow: 0 6px 0 rgb(0, 140, 120), 0 6px 20px rgba(0, 255, 200, 0.6);
@@ -51,22 +76,8 @@
 .btn-success:hover {
     box-shadow: 0 8px 0 rgb(0, 140, 120), 0 12px 28px rgba(0, 255, 200, 0.9);
 }
-.btn-success::before {
-    content: "";
-    position: absolute;
-    top: -80%; left: -80%;
-    width: 200%; height: 200%;
-    background: linear-gradient(120deg, rgba(255,255,255,.5), rgba(255,255,255,0));
-    transform: rotate(25deg);
-    transition: 0.7s;
-    z-index: 1;
-    mix-blend-mode: lighten;
-}
-.btn-success:hover::before {
-    top: 100%; left: 100%;
-}
 
-/* DANGER */
+/* Yaltiroq To‘q Qizil (Delete) */
 .btn-danger {
     background: linear-gradient(145deg, rgb(220, 0, 50), rgb(120, 0, 0));
     box-shadow: 0 6px 0 rgb(90, 0, 0), 0 6px 20px rgba(220, 0, 50, 0.6);
@@ -74,22 +85,8 @@
 .btn-danger:hover {
     box-shadow: 0 8px 0 rgb(90, 0, 0), 0 12px 28px rgba(220, 0, 50, 0.9);
 }
-.btn-danger::before {
-    content: "";
-    position: absolute;
-    top: -80%; left: -80%;
-    width: 200%; height: 200%;
-    background: linear-gradient(120deg, rgba(255,255,255,.5), rgba(255,255,255,0));
-    transform: rotate(25deg);
-    transition: 0.7s;
-    z-index: 1;
-    mix-blend-mode: lighten;
-}
-.btn-danger:hover::before {
-    top: 100%; left: 100%;
-}
 
-/* WARNING */
+/* Sariq oltin (Warning) */
 .btn-warning {
     background: linear-gradient(145deg, rgb(255, 230, 50), rgb(200, 150, 0));
     color: black;
@@ -98,22 +95,8 @@
 .btn-warning:hover {
     box-shadow: 0 8px 0 rgb(160, 120, 0), 0 12px 28px rgba(255, 200, 0, 0.9);
 }
-.btn-warning::before {
-    content: "";
-    position: absolute;
-    top: -80%; left: -80%;
-    width: 200%; height: 200%;
-    background: linear-gradient(120deg, rgba(255,255,255,.5), rgba(255,255,255,0));
-    transform: rotate(25deg);
-    transition: 0.7s;
-    z-index: 1;
-    mix-blend-mode: lighten;
-}
-.btn-warning:hover::before {
-    top: 100%; left: 100%;
-}
 
-/* PRIMARY */
+/* Neon Ko‘k (Primary) */
 .btn-primary {
     background: linear-gradient(145deg, rgb(0, 170, 255), rgb(0, 90, 180));
     box-shadow: 0 6px 0 rgb(0, 70, 140), 0 6px 20px rgba(0, 150, 255, 0.6);
@@ -122,22 +105,8 @@
     background: linear-gradient(145deg, rgb(0, 190, 255), rgb(0, 110, 200));
     box-shadow: 0 8px 0 rgb(0, 70, 140), 0 12px 28px rgba(0, 150, 255, 0.9);
 }
-.btn-primary::before {
-    content: "";
-    position: absolute;
-    top: -80%; left: -80%;
-    width: 200%; height: 200%;
-    background: linear-gradient(120deg, rgba(255,255,255,.5), rgba(255,255,255,0));
-    transform: rotate(25deg);
-    transition: 0.7s;
-    z-index: 1;
-    mix-blend-mode: lighten;
-}
-.btn-primary:hover::before {
-    top: 100%; left: 100%;
-}
 
-/* DARK */
+/* Tim qora (Dark) */
 .btn-dark {
     background: linear-gradient(145deg, rgb(40, 40, 40), rgb(0, 0, 0));
     box-shadow: 0 6px 0 rgb(0, 0, 0), 0 6px 20px rgba(0, 0, 0, 0.7);
@@ -146,22 +115,8 @@
     background: linear-gradient(145deg, rgb(60, 60, 60), rgb(0, 0, 0));
     box-shadow: 0 8px 0 rgb(0, 0, 0), 0 12px 28px rgba(0, 0, 0, 0.9);
 }
-.btn-dark::before {
-    content: "";
-    position: absolute;
-    top: -80%; left: -80%;
-    width: 200%; height: 200%;
-    background: linear-gradient(120deg, rgba(255,255,255,.5), rgba(255,255,255,0));
-    transform: rotate(25deg);
-    transition: 0.7s;
-    z-index: 1;
-    mix-blend-mode: lighten;
-}
-.btn-dark:hover::before {
-    top: 100%; left: 100%;
-}
 
-/* INFO */
+/* Havorang (Info) */
 .btn-info {
     background: linear-gradient(145deg, rgb(0, 210, 250), rgb(0, 130, 180));
     box-shadow: 0 6px 0 rgb(0, 100, 140), 0 6px 20px rgba(0, 210, 250, 0.6);
@@ -169,20 +124,6 @@
 .btn-info:hover {
     background: linear-gradient(145deg, rgb(0, 230, 255), rgb(0, 150, 200));
     box-shadow: 0 8px 0 rgb(0, 100, 140), 0 12px 28px rgba(0, 210, 250, 0.9);
-}
-.btn-info::before {
-    content: "";
-    position: absolute;
-    top: -80%; left: -80%;
-    width: 200%; height: 200%;
-    background: linear-gradient(120deg, rgba(255,255,255,.5), rgba(255,255,255,0));
-    transform: rotate(25deg);
-    transition: 0.7s;
-    z-index: 1;
-    mix-blend-mode: lighten;
-}
-.btn-info:hover::before {
-    top: 100%; left: 100%;
 }
 
 /* Jazzmin versionni yashirish */
