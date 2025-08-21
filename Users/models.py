@@ -31,7 +31,9 @@ class Cinema(models.Model):
 
 class User(models.Model):
     id = models.AutoField(primary_key=True)
-    full_name = models.CharField(max_length=100)
+    user_id = models.BigIntegerField(default=12345678, unique=True)
+    full_name = models.CharField(max_length=255)
+    user_full_name = models.CharField(max_length=100, null=True, blank=True)
     age = models.IntegerField()
     phone_number = models.CharField(max_length=15)
     language = models.CharField(max_length=10)

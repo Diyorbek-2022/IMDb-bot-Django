@@ -1,8 +1,11 @@
-from django.contrib import admin
-from django.urls import path, include
-from Users import views   # agar Cinema modeli Users app ichida bo‘lsa
+from django.urls import path
+
+from .views import UserListView, CheckCinemaCodeView, UserDetailView, UserCreateView
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("check-cinema-code/", views.check_cinema_code, name="check_cinema_code"),
+    path("check-cinema-code/", CheckCinemaCodeView.as_view(), name="check_cinema_code"),
+    path('user/', UserListView.as_view(), name='user_list'),
+    path('user/create/', UserCreateView.as_view(), name='user_create'),
+    path('user/<str:id>/', UserDetailView.as_view(), name='user_detail'),
+    path('user/update/<str:id>/', UserDetailView.as_view(), name='user_update'),
 ]

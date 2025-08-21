@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const input = document.querySelector("#id_cinema_code");
     if (!input) return;
 
-    // Indicator qo'shamiz
+
     const indicator = document.createElement("div");
     indicator.classList.add("form-text", "mt-1");
     input.insertAdjacentElement("afterend", indicator);
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            fetch(`/check-cinema-code/?cinema_code=${encodeURIComponent(code)}`)
+            fetch(`/api/v1/check-cinema-code/?cinema_code=${encodeURIComponent(code)}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.is_taken) {

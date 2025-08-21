@@ -61,9 +61,9 @@ class CinemaForm(forms.ModelForm):
         fields = "__all__"
         widgets = {
             "cinema_url": forms.TextInput(attrs={
-                "placeholder": "🎬 Enter cinema URL or file_id (e.g. https://example.com/cinema.mp4 OR AgADBAADb6oxG...)",
+                "placeholder": "🎬 Enter cinema file_id or URL (e.g. https://example.com/cinema.mp4 OR AgADBAADb6oxG...)",
                 "class": "form-control shadow-sm rounded px-3",
-                "title": "Enter cinema URL or Telegram file_id",
+                "title": "Enter cinema file_id or Telegram URL",
                 "maxlength": 255,
                 "autocomplete": "off"
             }),
@@ -92,7 +92,7 @@ class CinemaForm(forms.ModelForm):
         }
 
     class Media:
-        js = ("js/cinema_code_check.js",)  # static fayl
+        js = ("js/cinema_code_check.js",)
 
 
 
